@@ -1,0 +1,39 @@
+<div class="container-fluid">
+
+	<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+	  <button class="navbar-toggler navbar-toggler-right" type="button">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <a class="navbar-brand" href="/articles">All the News!</a>
+
+	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-auto">
+	      <!-- <li class="nav-item active">
+	        <a class="nav-link" href="/">Saved Articles <span class="sr-only">(current)</span></a>
+	      </li> -->
+	      <li class="nav-item">
+	        <a class="nav-link" href="/scrape">Get News</a>
+	      </li>
+	    </ul>
+	  </div>
+	</nav>
+	<h1>Articles</h1>
+	<ul class="list-group">
+		{{if singleArticle}}
+			<div id="single_article" data-attr={{this._id}}>
+				<li class="list-group-item">{{this.title}}</li>
+			  	<li class="list-group-item">{{this.link}}</li>
+			</div>
+		{{/if}}
+		{{else if article}}
+			{{#each article}}
+			<div id="article" data-attr={{this._id}}>
+			  <li class="list-group-item">{{this.title}}</li>
+			  <li class="list-group-item">{{this.link}}</li>
+			  <!-- <li class="list-group-item">{{this.comment}}</li> -->
+			</div>
+			{{/each}}
+		{{/else if}}
+	</ul>
+
+</div>
