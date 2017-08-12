@@ -15,6 +15,8 @@ mongoose.Promise = Promise;
 
 var app = express();
 
+var port = process.env.PORT || 3000;
+
 app.engine("handlebars", expressHandlebars({
   defaultLayout: "main"
 }));
@@ -27,7 +29,16 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static("public"));
 
+// var databaseUri = 'mongodb://localhost/scraping-mongoose'
+
+// if(process.env.MONGODB_URI){
+//   mongoose.connect(process.env.MONGODB_URI);
+// }else{
+//   mongoose.connect(databaseUri)
+// }
+
 mongoose.connect("mongodb://localhost/scraping-mongoose");
+
 var db = mongoose.connection;
 
 db.on("error", function(error) {
@@ -36,6 +47,10 @@ db.on("error", function(error) {
 
 db.once("open", function() {
   console.log("Mongoose connection successful.");
+});
+
+app.get("/", function(req, res) {
+  res.redirect("/scrape");
 });
 
 app.get("/scrape", function(req, res) {
@@ -128,6 +143,6 @@ app.post("/comment/:articleid", function(req, res) {
 });
 
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log("App running on port 3000!");
 });
