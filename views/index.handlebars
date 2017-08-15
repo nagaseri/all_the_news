@@ -2,21 +2,14 @@
 
 	<h1>Articles</h1>
 	<ul class="list-group">
-		<!-- {{if singleArticle}}
-			<div id="single_article" data-attr={{this._id}}>
-				<li class="list-group-item">{{this.title}}</li>
-			  	<li class="list-group-item">{{this.link}}</li>
-			</div>
-		{{/if}}
-		{{else if article}} -->
+		
 			{{#each article}}
-			<div id="article" data-attr={{this._id}}>
-			  <li class="list-group-item">{{this.title}}</li>
-			  <li class="list-group-item">{{this.link}}</li>
+				<div id="article" data-attr={{this._id}}>
+			  	<li class="list-group-item">{{this.title}}</li>
+			  	<li class="list-group-item">{{this.link}}</li>
 			  <!-- <li class="list-group-item">{{this.comment}}</li> -->
 			</div>
 			{{/each}}
-		<!-- {{/else if}} -->
 	</ul>
 
 </div>
