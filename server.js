@@ -58,8 +58,10 @@ app.get("/scrape", function(req, res) {
   request("https://www.vox.com/", function(error, response, html) {
     
     var $ = cheerio.load(html);
-    
-    $("article h2").each(function(i, element) {
+    // console.log("hey");
+
+    $("h2").each(function(i, element) {
+      console.log("hello");
 
       var result = {};
 
@@ -99,6 +101,24 @@ app.get("/articles", function(req, res) {
       res.render("index", results);
     }
   });
+});
+
+app.get("/saved", function(req, res){
+
+  Article.find({"saved": true }, function(err, doc){
+    res.render("index", {article: doc});
+  });
+
+});
+
+app.put("/saved/:id", function(req, res){
+
+  Article.update({ "_id": req.params.id }, function(req, res){
+
+    saved: true
+
+  });
+
 });
 
 app.get("/articles/:id", function(req, res) {
