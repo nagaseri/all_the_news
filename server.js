@@ -89,9 +89,9 @@ app.get("/scrape", function(req, res) {
 
 app.get("/articles", function(req, res) {
 
-  Article.find({}, function(error, doc) {
-    if (error) {
-      console.log(error);
+  Article.find({}, function(err, doc) {
+    if (err) {
+      console.log(err);
     }
     else {
       var results = {
@@ -106,17 +106,25 @@ app.get("/articles", function(req, res) {
 app.get("/saved", function(req, res){
 
   Article.find({"saved": true }, function(err, doc){
-    res.render("index", {article: doc});
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("index", {article: doc});
+    };
   });
 
 });
 
-app.put("/saved/:id", function(req, res){
+app.post("/saved/:id", function(req, res){
 
-  Article.update({ "_id": req.params.id }, function(req, res){
-
-    saved: true
-
+  Article.findOneAndUpdate({ "_id": req.params.id }, {"saved": true}, function(err, doc){
+    if (err) {
+      console.log(err);
+    }
+    else {
+      res.send(doc);
+    };
   });
 
 });
