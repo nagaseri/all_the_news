@@ -1,17 +1,25 @@
-$(document).on("click", "#save", function() {
+$(document).on("click", ".article button", function() {
   event.preventDefault();
 
   var thisId = $(this).attr("data-attr");
 
-  $.ajax({
-    method: "POST",
-    url: "/saved/" + thisId
-  })
-  // With that done
-  .done(function(data) {
-    // Log the response
-    console.log("DONE, bitch")
-    console.log(data);
-  });
+  if($(this).hasClass("save")){
+    $.ajax({
+      method: "POST",
+      url: "/saved/" + thisId
+    })
+    // With that done
+    .done(function(data) {
+      // Log the response
+      console.log(data);
+    });
+  }else{
+    $.ajax({
+      method: "DELETE",
+      url: "/delete/" + thisId
+    }).done(function(data){
+      console.log(data);
+    });
+  };
 
 });

@@ -17,9 +17,16 @@ var app = express();
 
 var port = process.env.PORT || 3000;
 
-app.engine("handlebars", expressHandlebars({
-  defaultLayout: "main"
-}));
+var hbs = expressHandlebars.create({
+  defaultLayout: "main",
+  helpers: {
+    check: function(a, b){
+      return a === b;
+    }
+  }
+});
+
+app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 app.use(logger("dev"));
@@ -50,7 +57,7 @@ db.once("open", function() {
 });
 
 app.get("/", function(req, res) {
-  res.redirect("/scrape");
+  res.redirect("/articles");
 });
 
 app.get("/scrape", function(req, res) {
@@ -95,7 +102,8 @@ app.get("/articles", function(req, res) {
     }
     else {
       var results = {
-        article: doc
+        articles: doc,
+        index: false
       }
       //render template with data
       res.render("index", results);
@@ -110,7 +118,7 @@ app.get("/saved", function(req, res){
       console.log(err);
     }
     else{
-      res.render("index", {article: doc});
+      res.render("index", {articles: doc, index: false});
     };
   });
 
@@ -125,6 +133,20 @@ app.post("/saved/:id", function(req, res){
     }
     else {
       res.send(doc);
+    };
+  });
+
+});
+
+app.delete("/delete/:id", function(req, res){
+  console.log(req.params.id);
+
+  Article.deleteOne({ "_id": req.params.id}, function(err, doc){
+    if (err){
+      console.log(err);
+    }else{
+      res.send("Article deleted successfully");
+      res.redirect('/saved');
     };
   });
 
