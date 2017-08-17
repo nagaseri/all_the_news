@@ -117,8 +117,9 @@ app.get("/saved", function(req, res){
 });
 
 app.post("/saved/:id", function(req, res){
+  console.log(req.params.id);
 
-  Article.findOneAndUpdate({ "_id": req.params.id }, {"saved": true}, function(err, doc){
+  Article.findOneAndUpdate({ "_id": req.params.id }, { "saved": true }, function(err, doc){
     if (err) {
       console.log(err);
     }

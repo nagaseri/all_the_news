@@ -1,8 +1,7 @@
-$(document).on("click", "button#save", function() {
+$(document).on("click", "#save", function() {
   event.preventDefault();
-  console.log("SAVE CLICKED");
 
-  var thisId = $(this).attr("_id");
+  var thisId = $(this).attr("data-attr");
 
   $.ajax({
     method: "POST",
@@ -11,6 +10,7 @@ $(document).on("click", "button#save", function() {
   // With that done
   .done(function(data) {
     // Log the response
+    console.log("DONE, bitch")
     console.log(data);
   });
 
