@@ -14,8 +14,15 @@
 					  	<br>
 					</div>
 				{{/if}}
-			{{else}}
-				
+				{{else}}
+				<div class="article">
+					  	<li class="list-group-item">{{this.title}}
+							<button type="submit" style="float: right; position: relative;" class="delete" data-attr="{{_id}}">Delete Article</button>
+					  	</li>
+					  	<li class="list-group-item">{{this.link}}</li>
+					  	<!-- <li class="list-group-item">{{this.comment}}</li> -->
+					  	<br>
+					</div>
 			{{/if}}
 		{{/each}}
 	</ul>
