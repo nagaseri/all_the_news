@@ -7,7 +7,7 @@
 				{{#if this.saved}}
 					<div class="article">
 					  	<li class="list-group-item">{{this.title}}
-							<button type="submit" style="float: right; position: relative;" class="save" data-attr="{{_id}}">Save Article</button>
+							<button type="submit" style="float: right; position: relative;" class="delete" data-attr="{{_id}}">Delete Article</button>
 					  	</li>
 					  	<li class="list-group-item">{{this.link}}</li>
 					  	<!-- <li class="list-group-item">{{this.comment}}</li> -->
@@ -15,9 +15,9 @@
 					</div>
 				{{/if}}
 				{{else}}
-				<div class="article">
+					<div class="article">
 					  	<li class="list-group-item">{{this.title}}
-							<button type="submit" style="float: right; position: relative;" class="delete" data-attr="{{_id}}">Delete Article</button>
+							<button type="submit" style="float: right; position: relative;" class="save" data-attr="{{_id}}">Save Article</button>
 					  	</li>
 					  	<li class="list-group-item">{{this.link}}</li>
 					  	<!-- <li class="list-group-item">{{this.comment}}</li> -->
