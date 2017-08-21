@@ -9,6 +9,10 @@ var CommentSchema = new Schema({
   },
   body: {
     type: String
+  },
+  saved: {
+  	type: Boolean,
+    default: false
   }
 });
 

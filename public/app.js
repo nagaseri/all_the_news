@@ -12,14 +12,24 @@ $(document).on("click", ".article button", function() {
     .done(function(data) {
       // Log the response
       console.log(data);
-    });
-  }else{
+      alert("Article added successfully!")
+    })}
+    else if($(this).hasClass("delete")){
     $.ajax({
-      method: "DELETE",
+      method: "POST",
       url: "/delete/" + thisId
     }).done(function(data){
       console.log(data);
-    });
-  };
-
+    })}
+    else{
+      $.ajax({
+      method: "POST",
+      url: "/comment/" + thisId
+    })
+    // With that done
+    .done(function(data) {
+      // Log the response
+      console.log(data);
+      alert("Comment added successfully!")
+    })};
 });

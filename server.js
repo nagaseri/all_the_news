@@ -118,10 +118,9 @@ app.get("/saved", function(req, res){
       console.log(err);
     }
     else{
-      res.render("index", {articles: doc, index: false});
+      res.render("saved", {articles: doc, index: false});
     };
   });
-
 });
 
 app.post("/saved/:id", function(req, res){
@@ -135,21 +134,32 @@ app.post("/saved/:id", function(req, res){
       res.send(doc);
     };
   });
-
 });
 
-app.delete("/delete/:id", function(req, res){
+app.post("/comment/:id", function(req, res){
+
+  Comment.find({"saved": true}, function(err, doc){
+    if(err){
+      console.log(err);
+    }
+    else{
+      res.render("saved", {comment: doc, index: false});
+    }
+  });
+});
+
+app.post("/delete/:id", function(req, res) {
   console.log(req.params.id);
 
-  Article.deleteOne({ "_id": req.params.id}, function(err, doc){
-    if (err){
+  Article.findOneAndUpdate({ "_id": req.params.id }, {"saved": false})
+  .exec(function(err, doc) {
+    if (err) {
       console.log(err);
-    }else{
-      res.send("Article deleted successfully");
-      res.redirect('/saved');
+    }
+    else {
+      res.redirect("/saved");
     };
   });
-
 });
 
 app.get("/articles/:id", function(req, res) {
