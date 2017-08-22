@@ -5,9 +5,9 @@
 			<div class="article">
 			  	<li class="list-group-item">{{this.title}}
 					<button type="submit" style="float: right; position: relative;" class="delete" data-attr="{{_id}}">Delete Article</button>
-					<button type="submit" style="float: right; position: relative;" class="comment" data-attr="{{_id}}">Comment on Article</button>
+					<button type="submit" style="float: right; position: relative;" class="btn btn-primary" data-attr="{{_id}}" data-toggle="modal" data-target="#myModal">Comment on Article</button>
 			  	</li>
-			  	<div class="modal fade">
+			  	<div id="myModal" class="modal fade">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
 				      <div class="modal-header">
@@ -21,7 +21,7 @@
 					    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
 					  </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-primary">Save Comment</button>
+				        <button type="button" class="btn btn-primary comment">Save Comment</button>
 				      </div>
 				    </div>
 				  </div>
