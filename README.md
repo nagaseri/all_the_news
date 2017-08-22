@@ -5,19 +5,19 @@
 ## Functions
 
 	Articles that have been scraped:
-![Image of articles](assets/img/scraper.png)
+![Image of articles](public/assets/img/scraper.png)
 
 	Alert that is prompted when an article has been saved
-![Image of alert](assets/img/scraper1.png)
+![Image of alert](public/assets/img/scraper1.png)
 
 	Articles that have been saved to the database
-![Image of saved articles](assets/img/scraper2.png)
+![Image of saved articles](public/assets/img/scraper2.png)
 
 	Leave a comment on your favorite articles
-![Image of comment modal](assets/img/scraper3.png)
+![Image of comment modal](public/assets/img/scraper3.png)
 
 	Send the comment to the database
-![Image of alert](assets/img/scraper4.png)
+![Image of alert](public/assets/img/scraper4.png)
 
 ## Contributor
 
